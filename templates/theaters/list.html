@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Theaters | Cine Bite{% endblock %}
+{% block content %}<div class="container py-5"><h2>Our Theaters</h2><div class="row g-4 mt-2">{% for theater in theaters %}<div class="col-md-6"><div class="card p-4 h-100"><h4>{{ theater.name }}</h4><p>{{ theater.location }}</p><p>{{ theater.address }}</p><p>📞 {{ theater.phone }}</p><strong>{{ theater.screens.count }} screens</strong></div></div>{% empty %}<p>No theaters available.</p>{% endfor %}</div></div>{% endblock %}

@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Login | Cine Bite{% endblock %}
+{% block content %}<div class="container py-5"><div class="form-card mx-auto"><h2>Welcome back</h2><form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-warning w-100">Login</button></form><p class="mt-3">New here? <a href="{% url 'signup' %}">Create an account</a></p></div></div>{% endblock %}

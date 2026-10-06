@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Cine Bite | Home{% endblock %}
+{% block content %}
+<section class="hero py-5"><div class="container py-5"><div class="row align-items-center"><div class="col-lg-7">
+<span class="badge text-bg-warning mb-3">SMART CINEMA FOOD BOOKING</span>
+<h1 class="display-4 fw-bold">Book your movie.<br>Order your food.</h1>
+<p class="lead">Skip the cinema food queue. Pre-order popcorn, drinks, snacks and combos with Cine Bite.</p>
+<a href="{% url 'food_list' %}" class="btn btn-warning btn-lg me-2">Explore Food</a>
+<a href="{% url 'movie_list' %}" class="btn btn-outline-light btn-lg">Browse Movies</a>
+</div></div></div></section>
+<div class="container py-5">
+<h2 class="mb-4">Now Showing</h2>
+<div class="row g-4">{% for movie in movies %}<div class="col-md-4"><div class="card h-100 shadow-sm"><div class="card-body"><span class="badge text-bg-dark">{{ movie.genre|default:"Movie" }}</span><h4 class="mt-3">{{ movie.title }}</h4><p>{{ movie.description|truncatechars:110 }}</p><a href="{% url 'movie_detail' movie.pk %}" class="btn btn-dark">View Shows</a></div></div></div>{% empty %}<p>No movies yet. Run <code>python manage.py seed_demo</code>.</p>{% endfor %}</div>
+<h2 class="mt-5 mb-4">Popular Food</h2>
+<div class="row g-4">{% for food in food_items %}<div class="col-md-3"><div class="card h-100"><div class="card-body"><h5>{{ food.name }}</h5><p class="text-muted">{{ food.description|truncatechars:70 }}</p><strong>₹{{ food.sale_price }}</strong><a href="{% url 'add_to_cart' food.pk %}" class="btn btn-warning btn-sm float-end">Add</a></div></div></div>{% endfor %}</div>
+</div>
+{% endblock %}
